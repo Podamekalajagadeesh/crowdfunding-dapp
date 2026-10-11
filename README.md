@@ -1,137 +1,163 @@
 # Web3 Crowdfunding dApp
 
-A decentralized crowdfunding platform built with Solidity, Ethereum, React, Ethers.js, Hardhat, and MetaMask.
+A decentralized crowdfunding platform built with **Solidity, Ethereum, React, Ethers.js, Hardhat, and MetaMask**. Users can create campaigns, contribute ETH, track funding progress, and withdraw funds or claim refunds according to campaign outcomes.
 
-## Features
+## 🔗 Links
 
-- Create crowdfunding campaigns
-- Set funding goals and deadlines
-- Contribute ETH through MetaMask
-- Track contributor balances
-- Real-time funding progress
-- Creator-only withdrawals
-- Refunds for unsuccessful campaigns
-- Ethereum network validation
-- Ethereum Sepolia deployment
-- Sourcify-verified smart contract
-- 12 passing smart-contract tests
+- **Live Demo:** https://crowdfunding-dapp-lilac.vercel.app/
+- **GitHub Repository:** https://github.com/Podamekalajagadeesh/crowdfunding-dapp
+- **Verified Smart Contract:** https://sourcify.dev/server/repo-ui/11155111/0xe39b32a4998B929E3874A4460cA628e14BE62041
 
-## Tech Stack
+**Network:** Ethereum Sepolia  
+**Chain ID:** `11155111`
 
-### Blockchain
+## ✨ Features
+
+- Create crowdfunding campaigns with funding goals and deadlines
+- Contribute ETH using MetaMask
+- Track contributor balances and funding progress
+- Allow campaign creators to withdraw funds when eligible
+- Support refunds for unsuccessful campaigns
+- Validate the connected Ethereum network
+- Deploy smart contracts to Ethereum Sepolia
+- Verify smart-contract source code on Sourcify
+- Include 12 passing smart-contract tests
+
+## 🛠️ Tech Stack
+
+**Blockchain**
 - Solidity 0.8.28
 - Ethereum Sepolia
 - Hardhat 3
 - OpenZeppelin
 
-### Frontend
+**Frontend**
 - React
 - Vite
 - Ethers.js
 - MetaMask
 
-### Testing
+**Testing**
 - Hardhat
 - Mocha
 - Chai
 
-## Project Structure
+## 📁 Project Structure
 
-    crowdfunding-dapp/
-    ├── blockchain/
-    │   ├── contracts/Crowdfunding.sol
-    │   ├── scripts/deploy.js
-    │   ├── test/Crowdfunding.js
-    │   ├── hardhat.config.js
-    │   └── package.json
-    ├── frontend/
-    │   ├── src/
-    │   ├── package.json
-    │   └── .env.local
-    └── README.md
+```text
+crowdfunding-dapp/
+├── blockchain/
+│   ├── contracts/Crowdfunding.sol
+│   ├── scripts/deploy.js
+│   ├── test/Crowdfunding.js
+│   ├── hardhat.config.js
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── .env.local
+└── README.md
+```
 
-## Smart Contract
+## 📜 Smart Contract
 
-The Crowdfunding contract manages campaign creation, ETH contributions, funding goals, deadlines, withdrawals, and refunds.
+The `Crowdfunding` contract handles campaign creation, contributions, funding goals, deadlines, withdrawals, and refunds.
 
 Main functions:
 
-- createCampaign()
-- contribute()
-- withdraw()
-- claimRefund()
-- getCampaign()
-- getCampaignCount()
-- getContribution()
+- `createCampaign()`
+- `contribute()`
+- `withdraw()`
+- `claimRefund()`
+- `getCampaign()`
+- `getCampaignCount()`
+- `getContribution()`
 
-## Testing
+## 🧪 Testing
 
-The project has 12 passing smart-contract tests covering campaign creation, validation, contributions, deadlines, withdrawals, and refunds.
+The project includes **12 passing smart-contract tests** covering campaign creation, validation, contributions, deadlines, withdrawals, and refunds.
 
-Run:
+Run the tests:
 
-    cd blockchain
-    npm test
+```bash
+cd blockchain
+npm install
+npm test
+```
 
-## Sepolia Deployment
+## 🚀 Local Development
 
-Network: Ethereum Sepolia
+### 1. Install blockchain dependencies
 
-Chain ID: 11155111
+```bash
+cd blockchain
+npm install
+```
 
-Contract:
+### 2. Start a local Hardhat node
 
-    0xe39b32a4998B929E3874A4460cA628e14BE62041
+In one terminal:
 
-The contract source code has been successfully verified on Sourcify.
+```bash
+npx hardhat node
+```
 
-## Example Test
+### 3. Deploy the contract locally
 
-A live Sepolia campaign was successfully tested:
+In another terminal, from the `blockchain` directory:
 
-- Campaign: Sepolia Web3 Campaign
-- Goal: 0.01 ETH
-- Contribution: 0.001 ETH
-- Funding progress: 10%
-- Network: Ethereum Sepolia
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
 
-## Local Development
+### 4. Install frontend dependencies
 
-Install blockchain dependencies:
+Open another terminal and navigate to the frontend directory:
 
-    cd blockchain
-    npm install
+```bash
+cd frontend
+npm install
+```
 
-Start Hardhat:
+### 5. Configure environment variables
 
-    npx hardhat node
+Create the required local environment file using the variable names expected by the frontend code. Do not commit private keys, seed phrases, or API secrets.
 
-Deploy locally:
+### 6. Start the frontend
 
-    npx hardhat run scripts/deploy.js --network localhost
+```bash
+npm run dev
+```
 
-Install frontend dependencies:
+## 🌐 Sepolia Deployment
 
-    cd ../frontend
-    npm install
+- **Network:** Ethereum Sepolia
+- **Chain ID:** `11155111`
+- **Contract Address:** `0xe39b32a4998B929E3874A4460cA628e14BE62041`
+- **Source Verification:** Sourcify
 
-Start frontend:
+The contract source code is verified on Sourcify. Source verification does not replace an independent security audit.
 
-    npm run dev
+## ✅ Example Sepolia Test
 
-## Security
+A live Sepolia campaign was tested with the following values:
 
-- Private keys are kept outside source code.
-- Environment files are excluded from Git.
-- Network validation prevents accidental wrong-network usage.
-- Creator authorization protects withdrawals.
-- Refunds are available only for failed campaigns.
-- Withdrawals are available only after deadlines.
-- Contract source code is verified.
+- **Campaign:** Sepolia Web3 Campaign
+- **Goal:** 0.01 ETH
+- **Contribution:** 0.001 ETH
+- **Funding Progress:** 10%
+- **Network:** Ethereum Sepolia
 
-Never commit private keys, seed phrases, or API secrets.
+## 🔐 Security Considerations
 
-## Future Improvements
+- Keep private keys and secrets outside source control.
+- Exclude environment files containing secrets from Git.
+- Validate the connected network.
+- Restrict withdrawals to authorized campaign creators.
+- Enforce campaign eligibility rules for refunds and withdrawals.
+- Never commit private keys, seed phrases, or API secrets.
+
+## 🔮 Future Improvements
 
 - Campaign images
 - Categories and search
@@ -140,9 +166,8 @@ Never commit private keys, seed phrases, or API secrets.
 - IPFS metadata
 - Event indexing
 - Multi-chain support
-- Production frontend hosting
 - DAO-based governance
 
-## License
+## 📄 License
 
 MIT
